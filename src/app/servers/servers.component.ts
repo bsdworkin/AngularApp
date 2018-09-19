@@ -2,14 +2,31 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-servers',
+  //template: <app-server></app-server>
   templateUrl: './servers.component.html',
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
 
-  constructor() { }
+  allowNewServer = false;
+  serverCreationStatus = 'No server was created!';
+  serverName='TestServer';
+
+  //Below is ran on component creation
+  constructor() { 
+    setTimeout(()=>{
+        this.allowNewServer = true;
+    }, 2000);
+  }
 
   ngOnInit() {
   }
 
+  onCreateServer(){
+    this.serverCreationStatus = 'Server was created';
+  }
+
+  onUpdateServerName(event: Event){
+    this.serverName = (<HTMLInputElement>event.target).value;
+  }
 }
